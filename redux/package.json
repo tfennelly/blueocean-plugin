@@ -1,0 +1,33 @@
+{
+  "name": "@jenkins-cd/redux",
+  "version": "0.0.1",
+  "description": "Jenkins redux libary",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && babel --presets es2015 js -d dist",
+    "test": "npm run build && gulp test",
+    "prepublish": "npm run build",
+    "lint": "gulp lint"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author": "Tom Fennelly <tom.fennelly@gmail.com> (https://github.com/tfennelly)",
+  "license": "MIT",
+  "devDependencies": {
+    "@jenkins-cd/eslint-config-jenkins": "0.0.2",
+    "@jenkins-cd/js-builder": "0.0.34",
+    "babel-cli": "6.10.1",
+    "babel-core": "6.10.4",
+    "babel-eslint": "6.1.0",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-stage-0": "6.5.0",
+    "chai": "3.5.0",
+    "gulp": "3.9.1",
+    "gulp-mocha": "2.2.0"
+  },
+  "dependencies": {
+    "redux": "3.5.2"
+  }
+}

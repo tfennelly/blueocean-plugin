@@ -6,10 +6,13 @@ extensions:
     extensionPoint: jenkins.logo.top
   - component: PipelineRoutes
     extensionPoint: jenkins.main.routes
-  - component: PipelineStore
-    extensionPoint: jenkins.main.stores
   - component: components/PipelineRunGraph
     extensionPoint: jenkins.pipeline.run.result
   - component: components/testing/TestResults
     extensionPoint: jenkins.test.result
     type: hudson.tasks.test.TestResult
+  # Redux store components
+  - component: PipelineStore
+    extensionPoint: jenkins.main.stores
+  - component: store/PipelineDescriptorModule
+    extensionPoint: jenkins.main.stores.modules
