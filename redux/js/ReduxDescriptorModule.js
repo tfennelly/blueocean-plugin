@@ -5,6 +5,10 @@ export default class ReduxDescriptorModule {
         this._reducers = [];
     }
 
+    reset() {
+        this._reducers = [];
+    }
+
     addReducer(actionType, reducerFunc) {
         if (typeof actionType !== 'string') {
             throw new Error(`The "actionType" parameter must be a JavaScript string`);
@@ -24,8 +28,12 @@ export default class ReduxDescriptorModule {
         });
     }
 
-    actionStateSelector(action) {
+    actionSubStateSelector(action) {
         throw new Error(`actionStatePath() must be defined on ${Object.getPrototypeOf(this)}. TODO: link to relevant docs.`);
+    }
+
+    addReducers() {
+        throw new Error(`addReducers() must be defined on ${Object.getPrototypeOf(this)}. TODO: link to relevant docs.`);
     }
 
     reducers() {

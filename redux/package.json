@@ -4,8 +4,9 @@
   "description": "Jenkins redux libary",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && babel --presets es2015 js -d dist",
-    "test": "npm run build && gulp test",
+    "buildsrc": "rm -rf dist && mkdir dist && babel --presets es2015 js -d dist",
+    "buildtest": "rm -rf spec/classes-bin && mkdir spec/classes-bin && babel --presets es2015 spec/classes-src -d spec/classes-bin",
+    "test": "npm run buildsrc && npm run buildtest && gulp test",
     "prepublish": "npm run build",
     "lint": "gulp lint"
   },

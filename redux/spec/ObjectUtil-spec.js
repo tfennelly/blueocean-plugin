@@ -88,4 +88,20 @@ describe("ObjectUtil.js", function () {
         chai.assert(people !== undefined);
         chai.expect(people[0].name).to.equal('Jack Murphy');
     });
+
+    it("- pathTokens", function () {
+        var tokens;
+
+        tokens = ObjectUtil.pathTokens('a/b/c');
+        chai.expect(tokens.length).to.equal(3);
+        chai.expect(tokens[0]).to.equal('a');
+        chai.expect(tokens[1]).to.equal('b');
+        chai.expect(tokens[2]).to.equal('c');
+
+        tokens = ObjectUtil.pathTokens('/a/b/c/');
+        chai.expect(tokens.length).to.equal(3);
+        chai.expect(tokens[0]).to.equal('a');
+        chai.expect(tokens[1]).to.equal('b');
+        chai.expect(tokens[2]).to.equal('c');
+    });
 });
