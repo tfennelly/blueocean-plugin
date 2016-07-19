@@ -5,6 +5,8 @@ code can manipulate data in the Blue Ocean [Redux] store.
 
 > __Note__: Also see MobX as an alternative to using [Redux]. Looks very promising - unobtrusive, little/no boilerplate.
 
+<hr/>
+
 <p>
 <ul>
     <a href="#redux-in-blue-ocean">Redux in Blue Ocean</a><br/>
@@ -163,6 +165,12 @@ the react `context`. The arguments in favour of these approaches seems to be bas
 injection. In theory these are solid arguments, but the actual result of this in React is an ugly mess as the component
 code ends up being littered with `PropTypes` declarations, which are also an extra headache for the component author.
 
+Alternatively, one can use `react-redux` [Container Components] etc (`Provider` etc), but this approach fixes the
+verbose manual option through a 180<sup>o</sup> u-turn that's terse enough and decoupled enough such that it's more-or-less
+impossible for anyone but the [Redux] gurus to wrap their heads around.
+
+> In particular, Tom F did not like the [Container Components] approach, being much more comfortable with paying the price of a bit extra code for the benefit of having code that newcomers (and old hands) can make sense of without having to take drugs beforehand. Cliff also mentioned he found the [Container Components] approach a bit too abstract/cryptic. 
+
 For this reason, the preference here would be to access store state directly via `static` functions defined in the
 `ReduxDescriptorModule` JavaScript modules i.e. straight after the `ReduxDescriptorModule` implementation e.g.
 
@@ -274,3 +282,4 @@ export default class XXXX extends Component {
 [Action]: http://redux.js.org/docs/basics/Actions.html
 [Action Creator]: http://redux.js.org/docs/basics/Actions.html#action-creators
 [Pure Function]: http://redux.js.org/docs/introduction/ThreePrinciples.html#changes-are-made-with-pure-functions
+[Container Components]: http://redux.js.org/docs/basics/UsageWithReact.html#container-components
