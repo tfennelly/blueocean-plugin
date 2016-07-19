@@ -5,6 +5,24 @@ code can manipulate data in the Blue Ocean [Redux] store.
 
 > __Note__: Also see MobX as an alternative to using [Redux]. Looks very promising - unobtrusive, little/no boilerplate.
 
+<p>
+<ul>
+    <a href="#redux-in-blue-ocean">Redux in Blue Ocean</a><br/>
+    <a href="#jenkins-cdredux-npm-package">@jenkins-cd/redux NPM package</a><br/>
+    <ul>
+        <a href="#reduxdescriptormodule-implementations">ReduxDescriptorModule "implementations"</a><br/>
+        <ul>
+            <a href="#reduxdescriptormoduleactionsubstateselectoraction">ReduxDescriptorModule.actionSubStateSelector(action)</a><br/>
+            <a href="#reduxdescriptormoduleaddreducers">ReduxDescriptorModule.addReducers()</a><br/>
+        </ul>    
+        <a href="#accessing-state-state-accessor-functions">Accessing state ("State Accessor" functions)</a><br/>
+        <a href="#updatingchanging-state-bounded-action-creator-functions">Updating/changing state ("Bounded Action Creator" functions)</a><br/>
+    </ul>    
+</ul>    
+</p>
+
+<hr/>
+
 # Redux in Blue Ocean
 
 Lets frame this discussion by giving a brief history of [Redux] usage in Blue Ocean, as well as what might be next. 
