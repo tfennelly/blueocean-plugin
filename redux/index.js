@@ -1,5 +1,5 @@
-import store from './dist/Store.js';
+import StoreProxy from './dist/StoreProxy.js';
 import ReduxDescriptorModule from './dist/ReduxDescriptorModule';
 
-exports.store = store;
+exports.StoreProxy = StoreProxy;
 exports.ReduxDescriptorModule = ReduxDescriptorModule;

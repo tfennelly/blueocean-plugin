@@ -14,5 +14,3 @@ extensions:
   # Redux store components
   - component: PipelineStore
     extensionPoint: jenkins.main.stores
-  - component: store/PipelineDescriptorModule
-    extensionPoint: jenkins.main.stores.modules
