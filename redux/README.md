@@ -3,7 +3,7 @@
 This NPM package contains utilities that help put patterns around how Blue Ocean client-side
 code can manipulate data in the Blue Ocean [Redux] store.
 
-> __Note__: Also see MobX as an alternative to using [Redux]. Looks very promising - unobtrusive, little/no boilerplate.
+> __Note__: Also see [MobX] as an alternative to using [Redux]. Looks very promising - unobtrusive, little/no boilerplate.
 
 <hr/>
 
