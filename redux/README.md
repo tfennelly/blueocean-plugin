@@ -19,6 +19,7 @@ code can manipulate data in the Blue Ocean [Redux] store.
         </ul>    
         <a href="#accessing-state-state-accessor-functions">Accessing state ("State Accessor" functions)</a><br/>
         <a href="#updatingchanging-state-bounded-action-creator-functions">Updating/changing state ("Bounded Action Creator" functions)</a><br/>
+        <a href="#example">Example</a><br/>
     </ul>    
 </ul>    
 </p>
@@ -274,6 +275,10 @@ export default class XXXX extends Component {
 }
 
 ```
+
+## Example
+
+See `StoreProxy-spec.js` in [./spec](./spec), as well as the ES6 classes in [./spec/classes-src](./spec/classes-src).
 
 [Redux]: http://redux.js.org/
 [MobX]: https://mobxjs.github.io/mobx/index.html
