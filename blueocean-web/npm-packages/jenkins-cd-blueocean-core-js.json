@@ -1,0 +1,23 @@
+[
+  "0.0.20",
+  "@jenkins-cd/blueocean-core-js/dist/js/ToastService.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/ToastUtils.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/UrlBuilder.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/capability/CapabilityApi.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/capability/CapabilityAugmenter.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/capability/CapabilityStore.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/capability/Capable.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/capability/index.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/components/ReplayButton.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/components/RunButton.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/config.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/fetch.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/index.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/jwt.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/rest/RunApi.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/security.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/sse/SseBus.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/testutils.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/urlconfig.js",
+  "@jenkins-cd/blueocean-core-js/dist/js/utils.js"
+]

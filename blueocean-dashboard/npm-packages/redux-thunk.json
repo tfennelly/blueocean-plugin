@@ -1,0 +1,6 @@
+[
+  "2.1.0",
+  "redux-thunk/dist/redux-thunk.js",
+  "redux-thunk/dist/redux-thunk.min.js",
+  "redux-thunk/lib/index.js"
+]

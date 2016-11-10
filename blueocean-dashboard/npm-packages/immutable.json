@@ -1,0 +1,6 @@
+[
+  "3.8.1",
+  "immutable/contrib/cursor/index.js",
+  "immutable/dist/immutable.js",
+  "immutable/dist/immutable.min.js"
+]

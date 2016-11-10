@@ -1,0 +1,12 @@
+[
+  "3.6.0",
+  "redux/dist/redux.js",
+  "redux/dist/redux.min.js",
+  "redux/lib/applyMiddleware.js",
+  "redux/lib/bindActionCreators.js",
+  "redux/lib/combineReducers.js",
+  "redux/lib/compose.js",
+  "redux/lib/createStore.js",
+  "redux/lib/index.js",
+  "redux/lib/utils/warning.js"
+]

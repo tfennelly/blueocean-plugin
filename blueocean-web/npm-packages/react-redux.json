@@ -1,0 +1,12 @@
+[
+  "4.4.5",
+  "react-redux/dist/react-redux.js",
+  "react-redux/dist/react-redux.min.js",
+  "react-redux/lib/components/Provider.js",
+  "react-redux/lib/components/connect.js",
+  "react-redux/lib/index.js",
+  "react-redux/lib/utils/shallowEqual.js",
+  "react-redux/lib/utils/storeShape.js",
+  "react-redux/lib/utils/warning.js",
+  "react-redux/lib/utils/wrapActionCreators.js"
+]

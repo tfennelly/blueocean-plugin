@@ -1,0 +1,13 @@
+[
+  "0.0.27",
+  "@jenkins-cd/js-extensions/@jenkins-cd/js-builder.js",
+  "@jenkins-cd/js-extensions/@jenkins-cd/subs/css-bundle.js",
+  "@jenkins-cd/js-extensions/@jenkins-cd/subs/extensions-bundle.js",
+  "@jenkins-cd/js-extensions/@jenkins-cd/subs/react.js",
+  "@jenkins-cd/js-extensions/dist/ClassMetadataStore.js",
+  "@jenkins-cd/js-extensions/dist/ComponentTypeFilter.js",
+  "@jenkins-cd/js-extensions/dist/ExtensionRenderer.js",
+  "@jenkins-cd/js-extensions/dist/ExtensionStore.js",
+  "@jenkins-cd/js-extensions/dist/ResourceLoadTracker.js",
+  "@jenkins-cd/js-extensions/index.js"
+]

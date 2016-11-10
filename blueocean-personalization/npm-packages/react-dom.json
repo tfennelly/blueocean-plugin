@@ -1,0 +1,9 @@
+[
+  "15.3.2",
+  "react-dom/dist/react-dom-server.js",
+  "react-dom/dist/react-dom-server.min.js",
+  "react-dom/dist/react-dom.js",
+  "react-dom/dist/react-dom.min.js",
+  "react-dom/index.js",
+  "react-dom/server.js"
+]
