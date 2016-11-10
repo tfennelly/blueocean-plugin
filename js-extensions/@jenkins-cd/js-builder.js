@@ -11,6 +11,9 @@ exports.install = function(builder) {
     var jsBundle = require('./subs/extensions-bundle');
     var cssBundle = require('./subs/css-bundle');
 
+    // React and react dependants require special treatment.
+    require('./subs/react').processReactAndReactDependeants(builder);
+
     var extensionsJSON = jsBundle.bundle();
     if (extensionsJSON) {
         // Attach plugin CSS info to the extensions JSON, if there is any.
@@ -54,5 +57,8 @@ exports.install = function(builder) {
             .import('react-dom@any')
             .import('redux@any')
         ;
+
+        // All other react dependants that are in use by modules are handled
+        // inside the ./subs/react.js module
     }
 };

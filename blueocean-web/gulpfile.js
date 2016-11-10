@@ -47,12 +47,12 @@ builder.src([
 builder.bundle('src/main/js/blueocean.js')
     .inDir('target/classes/io/jenkins/blueocean')
     .less('src/main/less/blueocean.less')
-    .export("@jenkins-cd/blueocean-core-js")
-    .export("@jenkins-cd/design-language")
-    .export("@jenkins-cd/js-extensions")
-    .export('react')
-    .export('react-dom')
-    .export('redux')
+    .import("@jenkins-cd/blueocean-core-js")
+    .import("@jenkins-cd/design-language")
+    .import("@jenkins-cd/js-extensions")
+    .import('react')
+    .import('react-dom')
+    .import('redux')
     .generateNoImportsBundle();
 
 //
