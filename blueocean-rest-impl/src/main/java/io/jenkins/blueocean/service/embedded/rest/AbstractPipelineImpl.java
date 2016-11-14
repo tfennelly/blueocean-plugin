@@ -32,6 +32,7 @@ import io.jenkins.blueocean.rest.model.Containers;
 import io.jenkins.blueocean.rest.model.Resource;
 import io.jenkins.blueocean.service.embedded.util.FavoriteUtil;
 import org.kohsuke.stapler.Stapler;
+import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.WebMethod;
 import org.kohsuke.stapler.json.JsonBody;
 import org.kohsuke.stapler.verb.DELETE;
@@ -41,6 +42,7 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -208,9 +210,30 @@ public class AbstractPipelineImpl extends BluePipeline {
 
     }
 
-    @Navigable
     public Container<Resource> getActivities() {
-        return Containers.fromResource(getLink(), Lists.newArrayList(Iterators.concat(getQueue().iterator(), getRuns().iterator())));
+        int start = getRequestParamAsInteger("start", 0);
+        int limit = getRequestParamAsInteger("limit", 20);
+        List<? extends Resource> resultSet = Lists.newArrayList(getQueue().iterator());
+
+        if (start > resultSet.size()) {
+            resultSet.clear();
+        } else if (start > 0) {
+            // Remove up to start.
+            resultSet = resultSet.subList(start, resultSet.size());
+        }
+
+        if (resultSet.size() > limit) {
+            // Truncate it down to the request resultset
+            // size limit.
+            resultSet = resultSet.subList(0, limit);
+        } else if (resultSet.size() < limit) {
+            // We need some more. Get those from the Runs.
+            Container runContainer = new RunContainerImpl(this, job);
+            Iterator runsIterator = runContainer.iterator(start - resultSet.size(), limit - resultSet.size());
+            resultSet = Lists.newArrayList(Iterators.concat(resultSet.iterator(), runsIterator));
+        }
+
+        return Containers.fromResource(getLink(), Lists.newArrayList(resultSet));
     }
 
     /**
@@ -267,4 +290,18 @@ public class AbstractPipelineImpl extends BluePipeline {
         return user != null && Favorites.isFavorite(user, job);
     }
 
+    private int getRequestParamAsInteger(String name, int defaultVal) {
+        StaplerRequest request = Stapler.getCurrentRequest();
+        String paramValue = request.getParameter(name);
+
+        if (paramValue != null) {
+            try {
+                return Integer.parseInt(paramValue);
+            } catch (NumberFormatException e) {
+                // Fall through and return default. Maybe log a warning?
+            }
+        }
+
+        return defaultVal;
+    }
 }

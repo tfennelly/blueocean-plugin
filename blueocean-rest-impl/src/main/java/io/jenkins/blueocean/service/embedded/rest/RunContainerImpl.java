@@ -5,6 +5,7 @@ import hudson.model.CauseAction;
 import hudson.model.Item;
 import hudson.model.Job;
 import hudson.model.Queue;
+import hudson.model.Run;
 import hudson.model.queue.ScheduleResult;
 import hudson.util.RunList;
 import io.jenkins.blueocean.commons.ServiceException;
@@ -14,9 +15,12 @@ import io.jenkins.blueocean.rest.model.BlueQueueItem;
 import io.jenkins.blueocean.rest.model.BlueRun;
 import io.jenkins.blueocean.rest.model.BlueRunContainer;
 import jenkins.model.Jenkins;
+import jenkins.model.lazy.LazyBuildMixIn;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Vivek Pandey
@@ -62,6 +66,31 @@ public class RunContainerImpl extends BlueRunContainer {
     @Override
     public Iterator<BlueRun> iterator() {
         return RunSearch.findRuns(job, pipeline.getLink()).iterator();
+    }
+
+    @Override
+    public Iterator<BlueRun> iterator(int start, int limit) {
+        if (job instanceof LazyBuildMixIn.LazyLoadingJob) {
+            final List<BlueRun> runs = new ArrayList<>();
+            final LazyBuildMixIn lazyLoadMixin = ((LazyBuildMixIn.LazyLoadingJob) job).getLazyBuildMixIn();
+            final Iterator<Run> runIterator = lazyLoadMixin.getRunMap().iterator();
+
+            int skipCount = start; // Skip up to the start
+            while (runIterator.hasNext()) {
+                if (skipCount > 0) {
+                    skipCount--;
+                } else {
+                    runs.add(AbstractRunImpl.getBlueRun(runIterator.next(), pipeline));
+                }
+                if (runs.size() >= limit) {
+                    break;
+                }
+            }
+
+            return runs.iterator();
+        } else {
+            return super.iterator(start, limit);
+        }
     }
 
     @Override
