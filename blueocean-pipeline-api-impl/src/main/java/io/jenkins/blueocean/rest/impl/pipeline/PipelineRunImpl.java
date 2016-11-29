@@ -3,6 +3,7 @@ package io.jenkins.blueocean.rest.impl.pipeline;
 import hudson.Extension;
 import hudson.model.Queue;
 import hudson.model.Run;
+import hudson.model.RunMap;
 import hudson.plugins.git.util.BuildData;
 import hudson.scm.ChangeLogSet;
 import hudson.scm.ChangeLogSet.Entry;
@@ -22,11 +23,14 @@ import io.jenkins.blueocean.service.embedded.rest.BlueRunFactory;
 import io.jenkins.blueocean.service.embedded.rest.ChangeSetResource;
 import io.jenkins.blueocean.service.embedded.rest.QueueContainerImpl;
 import io.jenkins.blueocean.service.embedded.rest.StoppableRun;
+import jenkins.model.lazy.LazyBuildMixIn;
 import org.jenkinsci.plugins.workflow.cps.replay.ReplayAction;
+import org.jenkinsci.plugins.workflow.job.WorkflowJob;
 import org.jenkinsci.plugins.workflow.job.WorkflowRun;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.export.Exported;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -66,9 +70,24 @@ public class PipelineRunImpl extends AbstractRunImpl<WorkflowRun> {
 
         Queue.Item item = replayAction.run2(replayAction.getOriginalScript(), replayAction.getOriginalLoadedScripts());
 
-        BlueQueueItem queueItem = QueueContainerImpl.getQueuedItem(item, run.getParent());
+        WorkflowJob job = run.getParent();
+        BlueQueueItem queueItem = QueueContainerImpl.getQueuedItem(item, job);
 
         if(queueItem == null) {
+            LazyBuildMixIn<WorkflowJob, WorkflowRun> lazyMixIn = job.getLazyBuildMixIn();
+            RunMap<WorkflowRun> runMap = lazyMixIn.getRunMap();
+            Iterator<WorkflowRun> runIterator = runMap.iterator();
+
+            while (runIterator.hasNext()) {
+                WorkflowRun nextRun = runIterator.next();
+                if (nextRun.getQueueId() == item.getId()) {
+                    // TODO: seems like the API for this function is not right
+                    // In this case, the run has left the queue and has already
+                    // started, so prob doesn't make sense to return the queue item.
+                    return queueItem;
+                }
+            }
+
             throw new ServiceException.UnexpectedErrorException("Run was not added to queue.");
         } else {
             return queueItem;
